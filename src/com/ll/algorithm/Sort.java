@@ -75,7 +75,18 @@ public class Sort {
      * @param a
      */
     public static void shellSort(int[] a){
-
+        int length = a.length;
+        for (int i = length/2; i>0; i = i/2){
+            for (int j = i; j <length ; j++) {
+                int current = a[j];
+                int index= j-i;
+                while (index>=0 && a[index] > current){
+                    a[index+i] = a[index];
+                    index = index - i;
+                }
+                a[index+i] = current;
+            }
+        }
     }
 
 
@@ -84,13 +95,15 @@ public class Sort {
      * @param a
      */
     public static void mergeSort(int[] a){
-        
+
     }
+
+
 
 
     public static void main(String[] args) {
         int[] a = new int[]{1,4,3,76,3,2,6,11};
-        insertiongSort(a);
+        shellSort(a);
         for (Integer integer : a){
             System.out.println(integer);
         }

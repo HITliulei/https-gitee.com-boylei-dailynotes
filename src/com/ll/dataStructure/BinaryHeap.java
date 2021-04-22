@@ -1,12 +1,13 @@
 package com.ll.dataStructure;
-
-import java.util.Arrays;
-
 /**
  * @author Lei
  * @version 0.1
  * @date 2021/4/22
  */
+
+import java.util.Arrays;
+
+
 public class BinaryHeap {
 
     private static final int DEFAULT_CAPACITY = 100;
@@ -14,8 +15,7 @@ public class BinaryHeap {
     private int currentSize;      // Number of elements in heap
     private Comparable [ ] array; // The heap array
 
-    public BinaryHeap( )
-    {
+    public BinaryHeap( ) {
         this( DEFAULT_CAPACITY );
     }
     public BinaryHeap( Comparable[] items ){
@@ -29,16 +29,12 @@ public class BinaryHeap {
         buildHeap();
     }
 
-    public BinaryHeap( int capacity )
-    {
+    public BinaryHeap( int capacity ) {
         currentSize = 0;
         array = new Comparable[ capacity + 1 ];
     }
 
-    public void insert( Comparable x )
-    {
-
-        // Percolate up
+    public void insert( Comparable x ) {
         int hole = ++currentSize;
         for( ; hole > 1 && x.compareTo( array[ hole / 2 ] ) < 0; hole /= 2 )
             array[ hole ] = array[ hole / 2 ];
@@ -46,16 +42,14 @@ public class BinaryHeap {
     }
 
 
-    public Comparable findMin( )
-    {
+    public Comparable findMin( ) {
         if( isEmpty( ) )
             return null;
         return array[ 1 ];
     }
 
 
-    public Comparable deleteMin( )
-    {
+    public Comparable deleteMin( ) {
         if( isEmpty( ) )
             return null;
 
@@ -67,32 +61,27 @@ public class BinaryHeap {
     }
 
 
-    private void buildHeap( )
-    {
+    private void buildHeap( ) {
         for( int i = currentSize / 2; i > 0; i-- )
             percolateDown( i );
     }
 
 
-    public boolean isEmpty( )
-    {
+    public boolean isEmpty( ) {
         return currentSize == 0;
     }
 
 
-    public boolean isFull( )
-    {
+    public boolean isFull( ) {
         return currentSize == array.length - 1;
     }
 
 
-    public void makeEmpty( )
-    {
+    public void makeEmpty( ) {
         currentSize = 0;
     }
 
-    private void percolateDown( int hole )
-    {
+    private void percolateDown( int hole ) {
         int child;
         Comparable tmp = array[ hole ];
 
@@ -110,9 +99,7 @@ public class BinaryHeap {
         array[ hole ] = tmp;
     }
 
-    // Test program
-    public static void main( String [ ] args )
-    {
+    public static void main( String [ ] args ) {
         int numItems = 50;
         BinaryHeap h = new BinaryHeap( numItems );
         int i = 37;
