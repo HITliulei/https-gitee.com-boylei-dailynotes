@@ -104,8 +104,7 @@ public class BinaryHeap {
         BinaryHeap h = new BinaryHeap( numItems );
         int i = 37;
 
-        try
-        {
+        try {
             for( i = 37; i != 0; i = ( i + 37 ) % numItems )
                 h.insert( new Integer( i ) );
             System.out.println(Arrays.toString(h.array));
@@ -113,7 +112,8 @@ public class BinaryHeap {
             h.deleteMin();
             System.out.println(Arrays.toString(h.array));
         }
-        catch( Exception e )
-        { System.out.println( "Overflow (expected)! " + i  ); }
+        catch( Exception e ) {
+            System.out.println( "Overflow (expected)! " + i  );
+        }
     }
 }

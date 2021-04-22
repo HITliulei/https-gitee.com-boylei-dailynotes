@@ -1,5 +1,9 @@
 package com.ll.algorithm;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 主要记录一下十个排序算法的实现过程,实现的都是从小到大的排序
  * @author Lei
@@ -89,21 +93,161 @@ public class Sort {
         }
     }
 
-
     /**
      * 归并排序
      * @param a
      */
     public static void mergeSort(int[] a){
+        mergeSort(a, 0, a.length-1, new int[a.length]);
+    }
+    private static void mergeSort(int[] arr,int left,int right,int[] temp){
+        if(left<right){
+            int mid = (left+right)/2;
+            mergeSort(arr,left,mid,temp);
+            mergeSort(arr,mid+1,right,temp);
+            mergeSort(arr,left,mid,right,temp);
+        }
+    }
+    private static void mergeSort(int[] arr,int left,int mid,int right,int[] temp){
+        int i = left;
+        int j = mid+1;
+        int t = 0;
+        while (i<=mid && j<=right){
+            temp[t++] = arr[i]<=arr[j]?arr[i++]:arr[j++];
+        }
+        while(i<=mid){
+            temp[t++] = arr[i++];
+        }
+        while(j<=right){
+            temp[t++] = arr[j++];
+        }
+        t = 0;
+        while(left <= right){
+            arr[left++] = temp[t++];
+        }
+    }
 
+    /**
+     * 快速排序
+     * @param a
+     */
+    public static void quickSort(int[] a){
+        queckSort(a, 0, a.length-1);
+    }
+    private static void queckSort(int[] a, int left, int right){
+        if (left > right){
+            return;
+        }
+        int temp = a[left];
+        int i = left, j=right;
+        while (i<j){
+            while (temp <= a[j] && i<j){
+                j--;
+            }
+            while (temp >= a[i] && i<j){
+                i++;
+            }
+            if (i < j){
+                swap(a, i, j);
+            }
+        }
+        a[left] = a[i];
+        a[i] = temp;
+        queckSort(a, left, i-1);
+        queckSort(a, i+1, right);
+    }
+
+    /**
+     * 快速排序的list实现 方便一点
+     * @param list
+     */
+    public static void quickSort(List<Integer> list){
+        if (list.size() > 1){
+            List<Integer> small = new ArrayList<>();
+            List<Integer> same = new ArrayList<>();
+            List<Integer> big = new ArrayList<>();
+
+            Integer item = list.get(list.size()/2);
+            for (Integer i: list){
+                if (i<item){
+                    small.add(i);
+                }
+                if (i.equals(item)){
+                    same.add(i);
+                }
+                if (i > item){
+                    big.add(i);
+                }
+            }
+            quickSort(small);
+            quickSort(big);
+            list.clear();
+            list.addAll(small);
+            list.addAll(same);
+            list.addAll(big);
+        }
+    }
+
+    /**
+     * 堆排序 升序采用大顶堆
+     * @param a
+     */
+    public static void heapSort(int []arr){
+        //1.构建大顶堆
+        for(int i=arr.length/2-1;i>=0;i--){
+            //从第一个非叶子结点从下至上，从右至左调整结构
+            adjustHeap(arr,i,arr.length);
+        }
+        //2.调整堆结构+交换堆顶元素与末尾元素
+        for(int j=arr.length-1;j>0;j--){
+            swap(arr,0,j);//将堆顶元素与末尾元素进行交换
+            adjustHeap(arr,0,j);//重新对堆进行调整
+        }
+    }
+    /**
+     * 调整大顶堆（仅是调整过程，建立在大顶堆已构建的基础上）
+     * @param arr
+     * @param i
+     * @param length
+     */
+    public static void adjustHeap(int []arr,int i,int length){
+        int temp = arr[i];//先取出当前元素i
+        for(int k=i*2+1;k<length;k=k*2+1){//从i结点的左子结点开始，也就是2i+1处开始
+            if(k+1<length && arr[k]<arr[k+1]){//如果左子结点小于右子结点，k指向右子结点
+                k++;
+            }
+            if(arr[k] >temp){//如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
+                arr[i] = arr[k];
+                i = k;
+            }else{
+                break;
+            }
+        }
+        arr[i] = temp;//将temp值放到最终的位置
     }
 
 
 
+    public static int[] buildHead(int[] a){
+        int[] b = new int[a.length+1];
+        b[0] = Integer.MAX_VALUE;
+        int current = 0;
+        for (Integer h : a){
+            System.out.println(Arrays.toString(b));
+            current = current +1;
+            int now = current;
+            for (; now > 1 && h > b[now/2]; now = now /2){
+                b[now] = b[now/2];
+            }
+            b[now] = h;
+        }
+        return b;
+    }
+
 
     public static void main(String[] args) {
-        int[] a = new int[]{1,4,3,76,3,2,6,11};
-        shellSort(a);
+        int[] a = new int[]{1,4,3,76,2};
+        heapSort(a);
         for (Integer integer : a){
             System.out.println(integer);
         }
