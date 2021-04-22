@@ -60,7 +60,7 @@ public class Sort {
      * 插入排序
      * @param a 数组a
      */
-    public static void insertiongSort(int[] a){
+    public static void insertionSort(int[] a){
         int length = a.length;
         for (int i = 1; i < length; i++) {
             int index = i-1;
