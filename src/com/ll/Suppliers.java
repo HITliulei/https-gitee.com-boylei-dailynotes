@@ -1,5 +1,6 @@
 package com.ll;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
@@ -32,6 +33,7 @@ public class Suppliers {
         Stream.generate(gen)
                 .limit(n)
                 .forEach(a -> adder.accept(holder, a));
+
         return holder;
     }
 }
