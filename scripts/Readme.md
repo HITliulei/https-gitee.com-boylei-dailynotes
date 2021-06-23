@@ -3,7 +3,8 @@
 
 
 
-basic_utils.sh: 一些基础工具
+basic_utils.sh: 更换阿里源并安装一些基础工具
+zsh.sh: 安装zsh
  
 
 ### k8s: k8s集群安装
