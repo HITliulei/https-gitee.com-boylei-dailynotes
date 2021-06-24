@@ -17,4 +17,4 @@ EOF
 
 apt-get update
 apt-get upgrade
-apt install net-tools htop iftop iotop vim nano -y
+apt install net-tools htop iftop iotop vim nano git -y
