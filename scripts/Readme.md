@@ -3,9 +3,16 @@
 
 
 
-basic_utils.sh: 更换阿里源并安装一些基础工具
-zsh.sh: 安装zsh
- 
+- `basic_utils.sh`: 更换阿里源并安装一些基础工具
+- `change.sh`: 更改一些主机配置， 修改主机名称， 关闭swap，防火墙等。 `sudo ./change.sh hostname`
+
 
 ### k8s: k8s集群安装
+**先安装docker 在进行kubernetes的安装**
+- `docker.sh`: docker的安装，将本机所有docker配置全部删除, 里面的版本为5:19.03.1亲测有效， 可以使用,`sudo ./docker.sh`
+- `k8s_install.sh` `sudo ./k8s_install.sh 1.18.6` 默认1.18.6也是版本
+- `k8s_gxrcio.sh` 更换镜像 
+
+
+### zsh: 安装zsh， 并进行相应的配置
 
