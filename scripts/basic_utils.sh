@@ -20,7 +20,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted univer
 EOF
 
 apt-get update
-apt install net-tools htop screen byobu vim nano git -y
+apt install net-tools htop screen byobu vim nano git openssh-server -y
 
 
 git config --global user.name "$HOSTNAME"
