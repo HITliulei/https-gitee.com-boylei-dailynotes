@@ -17,12 +17,13 @@ rm -rf /var/lib/docker
 echo   "\033[31m install some tools \033[0m"
 apt update
 apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/ $(lsb_release -cs) stable"
 apt update
 
 echo "\033[31m install now \033[0m"
-apt install -y docker-ce=5:19.03.1~3-0~ubuntu-$(lsb_release -cs) docker-ce-cli=5:19.03.1~3-0~ubuntu-$(lsb_release -cs) containerd.io=1.2.13-1
+apt install -y docker-ce docker-ce-cli containerd.io
+#apt install -y docker-ce=5:19.03.15~3-0~ubuntu-$(lsb_release -cs) docker-ce-cli=5:19.03.15~3-0~ubuntu~ubuntu-$(lsb_release -cs) containerd.io=1.2.13-2
 
 systemctl enable docker
 systemctl start docker

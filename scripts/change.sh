@@ -14,5 +14,6 @@ sudo sed -ri '/^[^#]*swap/s@^@#@' /etc/fstab  # 取消开机挂载swap
 
 systemctl stop ufw
 systemctl disable ufw
+# ufw allow 22
 
 
