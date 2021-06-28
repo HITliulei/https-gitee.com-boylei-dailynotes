@@ -5,7 +5,7 @@
 apt-get remove docker docker-engine docker.io containerd runc
 
 apt-get update
-apt-get install \
+apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -23,7 +23,7 @@ echo \
 #  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 apt-get update
-apt-get install docker-ce docker-ce-cli containerd.io
+apt-get install docker-ce docker-ce-cli containerd.io -y
 
 systemctl enable docker
 systemctl start docker
