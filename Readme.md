@@ -15,7 +15,7 @@
 - `k8s_gxrcio.sh` 更换国内，镜像， 加快速度
 
 
-### zsh: 安装zsh， 并进行相应的配置
+### zsh: 安装zsh， 并进行相应的配置(强烈案例这个shell， 太好用了)
 - `zsh_downLoad.sh`: zsh的安装 `./zsh.sh`
 - `zsh.sh` : 安装oh-my-zsh以及zsh的插件， 这里有两个（高亮以及自动补全） `./zsh.sh`
 
@@ -29,3 +29,7 @@
   - Suppliers： 生成Collection  
 - dataStructure: 
   - BinaryHeap
+- IO 
+  - BIO： bio的一些实现
+  - NIO： 基于nio的一些实现
+- anno： java注解的一些实现  
